@@ -1,0 +1,1946 @@
+/* CSS Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Earth Tone Color Palette */
+    --primary-green: #2d5a27;
+    --secondary-green: #4a7c59;
+    --accent-green: #7cb342;
+    --light-green: #a5d6a7;
+    --earth-brown: #8d6e63;
+    --warm-brown: #8d6e63;
+    --cream: #f5f5dc;
+    --sage: #87a96b;
+    --forest: #1b5e20;
+    --gold: #ff8f00;
+    --terracotta: #a0522d;
+    
+    /* Typography */
+    --font-primary: 'Poppins', sans-serif;
+    --font-secondary: 'Noto Serif', serif;
+    
+    /* Spacing */
+    --section-padding: 80px 0;
+    --container-padding: 0 20px;
+    
+    /* Shadows */
+    --shadow-light: 0 2px 10px rgba(0, 0, 0, 0.1);
+    --shadow-medium: 0 4px 20px rgba(0, 0, 0, 0.15);
+    --shadow-heavy: 0 8px 30px rgba(0, 0, 0, 0.2);
+    
+    /* Border Radius */
+    --border-radius: 12px;
+    --border-radius-large: 20px;
+    
+    /* Transitions */
+    --transition-fast: 0.3s ease;
+    --transition-medium: 0.5s ease;
+    --transition-slow: 0.8s ease;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    color: var(--earth-brown);
+    background: linear-gradient(135deg, var(--cream) 0%, #f8f9fa 100%);
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--container-padding);
+}
+
+/* Loading Screen */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.loading-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loading-content {
+    text-align: center;
+    color: white;
+}
+
+.lotus-loader {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    position: relative;
+    animation: lotus-rotate 3s linear infinite;
+}
+
+.petal {
+    position: absolute;
+    width: 20px;
+    height: 40px;
+    background: var(--accent-green);
+    border-radius: 50% 50% 50% 0;
+    transform-origin: 50% 100%;
+    opacity: 0.8;
+}
+
+.petal:nth-child(1) { transform: rotate(0deg); }
+.petal:nth-child(2) { transform: rotate(45deg); }
+.petal:nth-child(3) { transform: rotate(90deg); }
+.petal:nth-child(4) { transform: rotate(135deg); }
+.petal:nth-child(5) { transform: rotate(180deg); }
+.petal:nth-child(6) { transform: rotate(225deg); }
+.petal:nth-child(7) { transform: rotate(270deg); }
+.petal:nth-child(8) { transform: rotate(315deg); }
+
+@keyframes lotus-rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Navigation */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(45, 90, 39, 0.1);
+    z-index: 1000;
+    transition: var(--transition-fast);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary-green);
+}
+
+.nav-logo i {
+    font-size: 1.8rem;
+    color: var(--accent-green);
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--earth-brown);
+    font-weight: 500;
+    transition: var(--transition-fast);
+    position: relative;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--primary-green);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent-green);
+    transition: var(--transition-fast);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background: var(--primary-green);
+    margin: 3px 0;
+    transition: var(--transition-fast);
+}
+
+/* Hero Section */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 70px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Background Image */
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+}
+
+.hero-bg-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(45, 90, 39, 0.7) 0%, rgba(74, 124, 89, 0.6) 50%, rgba(245, 245, 220, 0.4) 100%);
+    z-index: -1;
+}
+
+/* Text Above Image */
+.hero-text-above {
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 10;
+    width: 100%;
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+.hero-above-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 10px;
+    font-family: var(--font-secondary);
+    letter-spacing: 0.5px;
+}
+
+.hero-above-title .gradient-text {
+    background: linear-gradient(135deg, var(--accent-green), var(--light-green), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
+    font-weight: 900;
+    animation: gradientShift 3s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+    0%, 100% {
+        background: linear-gradient(135deg, var(--accent-green), var(--light-green), var(--gold));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    50% {
+        background: linear-gradient(135deg, var(--gold), var(--accent-green), var(--light-green));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+}
+
+.hero-above-subtitle {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    font-weight: 400;
+}
+
+/* Hero Grid Layout */
+.hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--container-padding);
+    position: relative;
+    z-index: 5;
+    margin-top: 200px;
+    width: 100%;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    width: 100%;
+    max-width: 1100px;
+}
+
+/* Left Column - Welcome Message */
+.hero-left {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.hero-text-left {
+    text-align: left;
+    max-width: 500px;
+}
+
+.hero-title {
+    font-size: 3.2rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: white;
+    font-family: var(--font-secondary);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    letter-spacing: 0.3px;
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, var(--accent-green), var(--light-green));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
+    font-weight: 800;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 40px;
+    line-height: 1.8;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 15px 30px;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+    color: white;
+    box-shadow: var(--shadow-medium);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-heavy);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--primary-green);
+    border: 2px solid var(--primary-green);
+    backdrop-filter: blur(10px);
+}
+
+.btn-secondary:hover {
+    background: var(--primary-green);
+    color: white;
+}
+
+/* Right Column - Herbal Elements and Promotional Banner */
+.hero-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-right-content {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+/* Promotional Banner */
+.promotional-banner {
+    background: linear-gradient(135deg, var(--light-green), var(--accent-green));
+    border-radius: var(--border-radius-large);
+    padding: 25px;
+    box-shadow: var(--shadow-heavy);
+    text-align: center;
+    max-width: 320px;
+    position: relative;
+    overflow: hidden;
+    z-index: 10;
+}
+
+.promotional-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.banner-content {
+    position: relative;
+    z-index: 2;
+}
+
+.banner-title {
+    color: var(--primary-green);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    text-transform: none;
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+}
+
+.banner-offer {
+    color: white;
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 3px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.banner-subtitle {
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.banner-description {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.75rem;
+    line-height: 1.3;
+    margin-bottom: 18px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.banner-btn {
+    background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-medium);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.banner-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-heavy);
+    background: linear-gradient(135deg, var(--secondary-green), var(--primary-green));
+}
+
+/* Herbal Elements Display */
+.herbal-elements {
+    position: relative;
+    width: 100%;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+}
+
+.herbal-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 8px;
+    box-shadow: var(--shadow-medium);
+    transition: all 0.4s ease;
+    cursor: pointer;
+    animation: herbalFloat 4s ease-in-out infinite;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.herbal-item:nth-child(1) { animation-delay: 0s; }
+.herbal-item:nth-child(2) { animation-delay: 0.8s; }
+.herbal-item:nth-child(3) { animation-delay: 1.6s; }
+.herbal-item:nth-child(4) { animation-delay: 2.4s; }
+.herbal-item:nth-child(5) { animation-delay: 3.2s; }
+
+.herbal-item:hover {
+    transform: scale(1.1) translateY(-5px);
+    box-shadow: var(--shadow-heavy);
+}
+
+.herbal-icon {
+    font-size: 1.5rem;
+    color: var(--primary-green);
+    z-index: 2;
+    position: relative;
+}
+
+.herbal-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, var(--accent-green) 0%, transparent 70%);
+    border-radius: 8px;
+    opacity: 0;
+    animation: herbalGlow 2s ease-in-out infinite;
+}
+
+.herbal-item:hover .herbal-glow {
+    opacity: 0.3;
+}
+
+/* Herbal Item Specific Styles */
+.mortar-pestle .herbal-icon {
+    color: var(--earth-brown);
+    font-size: 1.3rem;
+}
+
+.compress-balls .herbal-icon {
+    color: var(--accent-green);
+    font-size: 1.2rem;
+}
+
+.diffuser .herbal-icon {
+    color: var(--warm-brown);
+    font-size: 1.3rem;
+}
+
+.leaves .herbal-icon {
+    color: var(--accent-green);
+    font-size: 1.2rem;
+}
+
+.herbs .herbal-icon {
+    color: var(--light-green);
+    font-size: 1.2rem;
+}
+
+/* Animations */
+@keyframes herbalFloat {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-15px) rotate(5deg);
+    }
+}
+
+@keyframes herbalGlow {
+    0%, 100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        opacity: 0.3;
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+}
+
+/* Floating Elements */
+.floating-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.floating-leaf {
+    position: absolute;
+    color: var(--accent-green);
+    font-size: 1.2rem;
+    opacity: 0.6;
+    animation: float 6s ease-in-out infinite;
+}
+
+.leaf-1 {
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.leaf-2 {
+    top: 60%;
+    right: 15%;
+    animation-delay: 2s;
+}
+
+.leaf-3 {
+    bottom: 30%;
+    left: 20%;
+    animation-delay: 4s;
+}
+
+.leaf-4 {
+    top: 40%;
+    right: 25%;
+    animation-delay: 1s;
+}
+
+/* Section Headers */
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--earth-brown);
+    margin-bottom: 15px;
+    font-family: var(--font-secondary);
+}
+
+.section-subtitle {
+    font-size: 1.1rem;
+    color: var(--warm-brown);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Garden Section */
+.garden-section {
+    padding: var(--section-padding);
+    background: linear-gradient(180deg, #f8f9fa 0%, var(--cream) 100%);
+}
+
+.garden-container {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.garden-ground {
+    position: relative;
+    height: 60px;
+    margin-bottom: 40px;
+}
+
+.soil-layer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 40px;
+    background: linear-gradient(180deg, var(--earth-brown) 0%, #3e2723 100%);
+    border-radius: var(--border-radius);
+}
+
+.grass-layer {
+    position: absolute;
+    bottom: 35px;
+    width: 100%;
+    height: 25px;
+    background: linear-gradient(180deg, var(--accent-green) 0%, var(--secondary-green) 100%);
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+.garden-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.garden-plant {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    text-align: center;
+    box-shadow: var(--shadow-light);
+    transition: var(--transition-fast);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.garden-plant:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+}
+
+.plant-visual {
+    font-size: 4rem;
+    margin-bottom: 15px;
+    animation: plant-grow 2s ease-out;
+}
+
+.plant-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--primary-green);
+    margin-bottom: 5px;
+}
+
+.plant-latin {
+    font-size: 0.9rem;
+    color: var(--warm-brown);
+    font-style: italic;
+}
+
+.growth-stage {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: var(--accent-green);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+@keyframes plant-grow {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.garden-controls {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.garden-btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: var(--border-radius);
+    background: linear-gradient(135deg, var(--secondary-green), var(--accent-green));
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.garden-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+/* Plants Section */
+.plants-section {
+    padding: var(--section-padding);
+    background: white;
+}
+
+.search-filter-container {
+    margin-bottom: 40px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.search-box {
+    position: relative;
+    flex: 1;
+    max-width: 400px;
+}
+
+.search-box i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--warm-brown);
+}
+
+.search-box input {
+    width: 100%;
+    padding: 12px 15px 12px 45px;
+    border: 2px solid var(--light-green);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    transition: var(--transition-fast);
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: var(--accent-green);
+    box-shadow: 0 0 0 3px rgba(124, 179, 66, 0.1);
+}
+
+.filter-controls {
+    display: flex;
+    gap: 15px;
+}
+
+.filter-select {
+    padding: 12px 15px;
+    border: 2px solid var(--light-green);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    background: white;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.filter-select:focus {
+    outline: none;
+    border-color: var(--accent-green);
+}
+
+.plants-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.plant-card {
+    background: white;
+    border-radius: var(--border-radius-large);
+    overflow: hidden;
+    box-shadow: var(--shadow-light);
+    transition: var(--transition-fast);
+    cursor: pointer;
+    position: relative;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+}
+
+.plant-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-heavy);
+}
+
+.plant-image {
+    width: 100%;
+    height: 250px;
+    background: linear-gradient(135deg, var(--light-green), var(--accent-green));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.plant-image:hover .plant-image-overlay {
+    opacity: 1;
+}
+
+.plant-image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+}
+
+.plant-image-overlay i {
+    color: white;
+    font-size: 2rem;
+}
+
+.plant-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.plant-image:hover img {
+    transform: scale(1.1);
+}
+
+.plant-info {
+    padding: 25px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.plant-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--primary-green);
+    margin-bottom: 8px;
+}
+
+.plant-latin-name {
+    font-size: 1rem;
+    color: var(--warm-brown);
+    font-style: italic;
+    margin-bottom: 15px;
+}
+
+.plant-description {
+    color: var(--earth-brown);
+    line-height: 1.6;
+    margin-bottom: 20px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    flex: 1;
+}
+
+.plant-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.tag {
+    background: var(--light-green);
+    color: var(--forest);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.plant-parts {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 15px;
+    border-top: 1px solid var(--light-green);
+    margin-top: auto;
+}
+
+.plant-part {
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.part-icon {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.plant-3d {
+    background-color: #1b5e20;
+    color: #ffffff;
+    border-radius: 8px;
+    text-align: center;
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* This will center it horizontally inside its parent */
+.button-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.plant-3d:hover {
+    background-color: #256d2b;
+    transform: translateY(-2px);
+}
+
+.plant-3d:active {
+    transform: translateY(0);
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 2% auto;
+    padding: 0;
+    border-radius: var(--border-radius-large);
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    animation: modal-appear 0.3s ease;
+}
+
+@keyframes modal-appear {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.5);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-fast);
+}
+
+.close-modal:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.modal-header {
+    position: relative;
+    height: 300px;
+    background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+}
+
+.modal-header img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.modal-plant-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    padding: 40px 30px 20px;
+    color: white;
+}
+
+.modal-plant-title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.modal-plant-latin {
+    font-size: 1.1rem;
+    font-style: italic;
+    opacity: 0.9;
+}
+
+.modal-body-content {
+    padding: 30px;
+}
+
+.modal-section {
+    margin-bottom: 30px;
+}
+
+.modal-section h3 {
+    color: var(--primary-green);
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.modal-section p {
+    line-height: 1.8;
+    color: var(--earth-brown);
+    margin-bottom: 15px;
+}
+
+.parts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.part-detail {
+    background: var(--cream);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    text-align: center;
+}
+
+.part-detail h4 {
+    color: var(--primary-green);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.part-detail p {
+    font-size: 0.9rem;
+    color: var(--earth-brown);
+}
+
+/* About Section */
+.about-section {
+    padding: var(--section-padding);
+    background: linear-gradient(135deg, var(--cream) 0%, #f8f9fa 100%);
+}
+
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.about-content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    color: var(--earth-brown);
+}
+
+.ayurveda-principles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.principle {
+    background: white;
+    padding: 30px;
+    border-radius: var(--border-radius-large);
+    box-shadow: var(--shadow-light);
+    transition: var(--transition-fast);
+}
+
+.principle:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+}
+
+.principle i {
+    font-size: 3rem;
+    color: var(--accent-green);
+    margin-bottom: 20px;
+}
+
+.principle h4 {
+    font-size: 1.3rem;
+    color: var(--primary-green);
+    margin-bottom: 15px;
+}
+
+.principle p {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Footer */
+.footer {
+    background: var(--earth-brown);
+    color: white;
+    padding: 50px 0 20px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+.footer-section h4 {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: var(--accent-green);
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: var(--transition-fast);
+}
+
+.footer-section ul li a:hover {
+    color: var(--accent-green);
+}
+
+.disclaimer {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        flex-direction: column;
+        background-color: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: var(--shadow-medium);
+        padding: 20px 0;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-item {
+        margin: 15px 0;
+    }
+
+    .hero-content {
+        margin-top: 150px;
+        padding: 0 15px;
+    }
+
+    .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .hero-left {
+        order: 2;
+        text-align: center;
+    }
+
+    .hero-right {
+        order: 1;
+    }
+
+    .hero-text-left {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .hero-buttons .btn {
+        padding: 12px 24px;
+        font-size: 1rem;
+    }
+
+    .hero-text-above {
+        top: 80px;
+    }
+
+    .hero-above-title {
+        font-size: 2rem;
+        font-weight: 800;
+    }
+
+    .hero-above-title .gradient-text {
+        font-weight: 900;
+    }
+
+    .hero-above-subtitle {
+        font-size: 1rem;
+    }
+
+    .hero-right-content {
+        height: 400px;
+        gap: 20px;
+    }
+
+    .promotional-banner {
+        padding: 15px 12px;
+        max-width: 250px;
+    }
+
+    .banner-offer {
+        font-size: 1.6rem;
+    }
+
+    .banner-subtitle {
+        font-size: 0.8rem;
+    }
+
+    .banner-description {
+        font-size: 0.65rem;
+    }
+
+    .banner-btn {
+        padding: 8px 16px;
+        font-size: 0.8rem;
+    }
+
+    .herbal-elements {
+        height: 100px;
+        gap: 12px;
+    }
+
+    .herbal-item {
+        width: 40px;
+        height: 40px;
+    }
+
+    .herbal-icon {
+        font-size: 1rem;
+    }
+
+    .mortar-pestle .herbal-icon {
+        font-size: 0.9rem;
+    }
+
+    .compress-balls .herbal-icon {
+        font-size: 0.8rem;
+    }
+
+    .diffuser .herbal-icon {
+        font-size: 0.9rem;
+    }
+
+    .leaves .herbal-icon {
+        font-size: 0.8rem;
+    }
+
+    .herbs .herbal-icon {
+        font-size: 0.8rem;
+    }
+
+    .search-filter-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .filter-controls {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .garden-controls {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .garden-btn {
+        width: 100%;
+    }
+
+    .plants-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .plant-card {
+        margin-bottom: 20px;
+    }
+
+    .plant-image {
+        height: 200px;
+    }
+
+    .image-popup-content {
+        width: 90%;
+        max-width: 400px;
+    }
+
+    .modal-content {
+        width: 95%;
+        max-width: 500px;
+    }
+
+    .ayurveda-principles {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .hero-buttons .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    .hero-above-title {
+        font-size: 1.5rem;
+        font-weight: 800;
+    }
+
+    .hero-above-title .gradient-text {
+        font-weight: 900;
+    }
+
+    .hero-above-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .hero-right-content {
+        height: 350px;
+        gap: 15px;
+    }
+
+    .promotional-banner {
+        padding: 25px 15px;
+        max-width: 300px;
+    }
+
+    .banner-title {
+        font-size: 0.7rem;
+    }
+
+    .banner-offer {
+        font-size: 1.4rem;
+    }
+
+    .banner-subtitle {
+        font-size: 0.7rem;
+    }
+
+    .banner-description {
+        font-size: 0.55rem;
+    }
+
+    .banner-btn {
+        padding: 12px 24px;
+        font-size: 0.9rem;
+    }
+
+    .herbal-elements {
+        height: 120px;
+        gap: 15px;
+    }
+
+    .herbal-item {
+        width: 50px;
+        height: 50px;
+    }
+
+    .herbal-icon {
+        font-size: 1.2rem;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    .plant-card {
+        margin-bottom: 15px;
+    }
+
+    .plant-image {
+        height: 180px;
+    }
+
+    .plant-info {
+        padding: 15px;
+    }
+
+    .plant-title {
+        font-size: 1.1rem;
+    }
+
+    .image-popup-content {
+        width: 95%;
+        max-width: 350px;
+    }
+
+    .image-popup-close {
+        top: 10px;
+        right: 10px;
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+    }
+
+    .modal-plant-title {
+        font-size: 1.3rem;
+    }
+
+    .modal-body-content {
+        padding: 20px;
+    }
+}
+
+/* Animation Classes */
+.fade-in {
+    animation: fadeIn 0.6s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.slide-up {
+    animation: slideUp 0.6s ease-out;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Plant Growth Animations */
+.water-effect {
+    animation: waterGlow 1s ease-in-out;
+}
+
+@keyframes waterGlow {
+    0% { box-shadow: 0 0 0 rgba(33, 150, 243, 0); }
+    50% { box-shadow: 0 0 20px rgba(33, 150, 243, 0.6); }
+    100% { box-shadow: 0 0 0 rgba(33, 150, 243, 0); }
+}
+
+.sunlight-effect {
+    animation: sunlightGlow 1.5s ease-in-out;
+}
+
+@keyframes sunlightGlow {
+    0% { box-shadow: 0 0 0 rgba(255, 193, 7, 0); }
+    50% { box-shadow: 0 0 30px rgba(255, 193, 7, 0.8); }
+    100% { box-shadow: 0 0 0 rgba(255, 193, 7, 0); }
+}
+
+.harvest-effect {
+    animation: harvestPulse 0.8s ease-in-out;
+}
+
+@keyframes harvestPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* Utility Classes */
+.hidden {
+    display: none !important;
+}
+
+.visible {
+    display: block !important;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.no-scroll {
+    overflow: hidden;
+}
+
+/* Main Content Area */
+.main-content {
+    min-height: calc(100vh - 200px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--section-padding);
+}
+
+.welcome-section {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+.welcome-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--primary-green);
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.welcome-subtitle {
+    font-size: 1.3rem;
+    color: var(--warm-brown);
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+.welcome-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.welcome-buttons .btn {
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all var(--transition-medium);
+}
+
+.welcome-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+/* Responsive adjustments for welcome section */
+@media (max-width: 768px) {
+    .welcome-title {
+        font-size: 2.5rem;
+    }
+    
+    .welcome-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .welcome-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .welcome-buttons .btn {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .welcome-title {
+        font-size: 2rem;
+    }
+    
+    .welcome-subtitle {
+        font-size: 1rem;
+    }
+}
+
+/* Image Popup Modal */
+.image-popup-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 10000;
+    cursor: pointer;
+}
+
+.image-popup-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 90%;
+    max-height: 90%;
+    background: white;
+    border-radius: var(--border-radius-large);
+    overflow: hidden;
+    box-shadow: var(--shadow-heavy);
+}
+
+.image-popup-content img {
+    width: 100%;
+    height: auto;
+    max-height: 80vh;
+    object-fit: contain;
+}
+
+.image-popup-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+}
+
+.image-popup-close:hover {
+    background: rgba(0, 0, 0, 0.9);
+}
+
+/* Hierarchy Tooltip */
+.hierarchy-tooltip {
+    position: fixed;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--accent-green);
+    border-radius: var(--border-radius);
+    padding: 12px 16px;
+    font-size: 0.9rem;
+    color: var(--earth-brown);
+    font-weight: 500;
+    box-shadow: var(--shadow-medium);
+    z-index: 1000;
+    max-width: 250px;
+    text-align: center;
+    transform: translateX(-50%);
+    opacity: 0;
+    animation: tooltipAppear 0.3s ease forwards;
+    pointer-events: none;
+}
+
+.hierarchy-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 8px solid transparent;
+    border-top-color: var(--accent-green);
+}
+
+@keyframes tooltipAppear {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* Herbal Tooltip */
+.herbal-tooltip {
+    position: fixed;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--accent-green);
+    border-radius: var(--border-radius);
+    padding: 12px 16px;
+    font-size: 0.9rem;
+    color: var(--earth-brown);
+    font-weight: 500;
+    box-shadow: var(--shadow-medium);
+    z-index: 1000;
+    max-width: 250px;
+    text-align: center;
+    transform: translateX(-50%);
+    opacity: 0;
+    animation: tooltipAppear 0.3s ease forwards;
+    pointer-events: none;
+}
+
+.herbal-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 8px solid transparent;
+    border-top-color: var(--accent-green);
+}
+
+/* Promotional Message */
+.promotional-message {
+    position: fixed;
+    background: linear-gradient(135deg, var(--accent-green), var(--light-green));
+    color: white;
+    border-radius: var(--border-radius);
+    padding: 15px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    box-shadow: var(--shadow-heavy);
+    z-index: 1000;
+    max-width: 300px;
+    text-align: center;
+    transform: translateX(-50%);
+    opacity: 0;
+    animation: messageAppear 0.3s ease forwards;
+    pointer-events: none;
+}
+
+.promotional-message::after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 8px solid transparent;
+    border-bottom-color: var(--accent-green);
+}
+
+@keyframes messageAppear {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}

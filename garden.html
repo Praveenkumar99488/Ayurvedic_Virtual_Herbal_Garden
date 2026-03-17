@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Medicinal Plants Visualizations</title>
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    body {
+      font-family: "Poppins", Arial, sans-serif;
+      background: linear-gradient(180deg,#f7faf7,#eef6ef);
+      color: #2b2b2b;
+      margin: 0;
+      padding: 24px;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+      padding: 20px;
+      max-width: 1100px;
+      margin: 20px auto;
+    }
+    h1 { margin: 0 0 12px; font-size: 22px; color: #184d2b; }
+    p.lead { margin: 0 0 18px; color: #466b4d; }
+
+    .controls {
+      display:flex;
+      gap: 12px;
+      align-items:center;
+      margin-bottom: 18px;
+      flex-wrap:wrap;
+    }
+    select, button {
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid #d6e6d4;
+      background: white;
+      font-size: 14px;
+    }
+    button {
+      cursor: pointer;
+      background: linear-gradient(135deg,#2d7a2f,#6fbf73);
+      color: white;
+      border: none;
+      box-shadow: 0 6px 18px rgba(45,122,47,0.18);
+    }
+    .chart-wrap {
+      width: 100%;
+      min-height: 420px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    canvas { max-width: 100%; height: auto; }
+
+    .legend-note { margin-top:12px; color:#566d57; font-size:13px; }
+    @media (max-width:720px) {
+      .controls { flex-direction:column; align-items:stretch; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>Medicinal Plants — Visualizations</h1>
+    <p class="lead">Select a visualization below. Data used is realistic, research-inspired distribution of plant parts and disease categories in Ayurvedic medicine.</p>
+
+    <div class="controls">
+      <label for="chartSelect">Choose chart:</label>
+      <select id="chartSelect" aria-label="Choose chart">
+        <option value="partsPie">Most Used Plant Parts (Pie)</option>
+        <option value="diseaseBar">Plants by Disease Category (Bar)</option>
+        <option value="groupedBar">Plant Parts vs Disease (Grouped Bar)</option>
+      </select>
+
+      <button id="downloadBtn" title="Download current chart as PNG">Download Chart PNG</button>
+    </div>
+
+    <div class="chart-wrap">
+      <canvas id="visualChart"></canvas>
+    </div>
+
+    <div class="legend-note">
+      <strong>Note:</strong> The charts use realistic, aggregated data to illustrate trends in Ayurvedic usage (leaves, roots, bark, etc.) and commonly targeted disease categories.
+    </div>
+  </div>
+
+<script>
+/* ===========================
+   Realistic, research-inspired data
+   =========================== */
+
+/* Pie chart (Most used plant parts) — values are percentages (or counts) */
+const partsLabels = ["Leaves", "Roots", "Bark", "Fruits", "Seeds", "Flowers", "Stem"];
+const partsValues = [30, 25, 15, 10, 8, 7, 5];
+
+/* Bar chart (Plants by disease/usage category) */
+const diseaseLabels = ["Digestive", "Respiratory", "Skin Care", "Cardiovascular", "Nervous System", "Immune System", "Musculoskeletal"];
+const diseaseValues = [20, 15, 15, 12, 12, 10, 8]; // percentages-like distribution
+
+/* Grouped bar (Plant parts vs disease categories) */
+const groupedCategories = diseaseLabels; // same categories
+const groupedData = {
+  "Leaves":   [30, 25, 28, 20, 25, 35, 22],
+  "Roots":    [25, 28, 20, 25, 20, 18, 30],
+  "Bark":     [15, 12, 15, 18, 15, 10, 15],
+  "Fruits":   [10, 8, 12, 15, 10, 12, 8],
+  "Seeds":    [8, 10, 8, 10, 12, 10, 12],
+  "Flowers":  [7, 9, 10, 7, 10, 8, 10],
+  "Stem":     [5, 8, 7, 5, 8, 7, 3]
+};
+
+/* Color palette (pleasant, professional) */
+const COLORS = {
+  Leaves:   "#4CAF50",
+  Roots:    "#8B4513",
+  Bark:     "#A0522D",
+  Fruits:   "#FF9800",
+  Seeds:    "#FFD54F",
+  Flowers:  "#E91E63",
+  Stem:     "#9C27B0",
+  extras:   ["#FF6384", "#36A2EB", "#FFCE56", "#4CAF50", "#9C27B0", "#FF9800"]
+};
+
+/* ===========================
+   Chart initialisation + switching
+   =========================== */
+
+const ctx = document.getElementById("visualChart").getContext("2d");
+let currentChart = null;
+
+function makePartsPie() {
+  const data = {
+    labels: partsLabels,
+    datasets: [{
+      data: partsValues,
+      backgroundColor: partsLabels.map(l => COLORS[l] || "#9E9E9E"),
+      borderColor: "#ffffff",
+      borderWidth: 1
+    }]
+  };
+  const options = {
+    responsive:true,
+    plugins: {
+      legend: { position: "right" },
+      tooltip: { callbacks: { label: function(ctx) {
+        const v = ctx.parsed;
+        return `${ctx.label}: ${v}%`;
+      } } }
+    }
+  };
+  return new Chart(ctx, { type: "pie", data, options });
+}
+
+function makeDiseaseBar() {
+  const data = {
+    labels: diseaseLabels,
+    datasets: [{
+      label: "Plants (%)",
+      data: diseaseValues,
+      backgroundColor: COLORS.extras,
+      borderColor: "#2f6b2f",
+      borderWidth: 1
+    }]
+  };
+  const options = {
+    responsive:true,
+    plugins: { legend: { display: false } },
+    scales: {
+      y: { beginAtZero:true, title: { display:true, text: "Percentage (approx.)" } }
+    }
+  };
+  return new Chart(ctx, { type: "bar", data, options });
+}
+
+function makeGroupedBar() {
+  // Prepare datasets: one dataset per plant part
+  const partNames = Object.keys(groupedData);
+  const datasets = partNames.map((part, idx) => ({
+    label: part,
+    data: groupedData[part],
+    backgroundColor: COLORS[part],
+    borderColor: "#ffffff",
+    borderWidth: 0.6
+  }));
+
+  const data = {
+    labels: groupedCategories,
+    datasets: datasets
+  };
+
+  const options = {
+    responsive:true,
+    plugins: { legend: { position: 'top' } },
+    scales: {
+      x: { stacked: false },
+      y: { beginAtZero: true, title: { display:true, text: "Percentage (approx.)" } }
+    }
+  };
+
+  return new Chart(ctx, { type: "bar", data, options });
+}
+
+/* Render initial chart */
+function renderChartByKey(key) {
+  if (currentChart) {
+    currentChart.destroy();
+    currentChart = null;
+  }
+  if (key === "partsPie") currentChart = makePartsPie();
+  else if (key === "diseaseBar") currentChart = makeDiseaseBar();
+  else if (key === "groupedBar") currentChart = makeGroupedBar();
+}
+
+/* Setup UI interactions */
+const selectEl = document.getElementById("chartSelect");
+const downloadBtn = document.getElementById("downloadBtn");
+
+selectEl.addEventListener("change", (e) => {
+  renderChartByKey(e.target.value);
+  // small visual delay to ensure chart rendered before enabling download
+  setTimeout(()=>downloadBtn.disabled = false, 200);
+});
+
+/* Download function */
+downloadBtn.addEventListener("click", () => {
+  if (!currentChart) return;
+  const url = currentChart.toBase64Image("image/png", 1);
+  const a = document.createElement("a");
+  a.href = url;
+  const label = selectEl.value;
+  a.download = `${label}_chart.png`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+});
+
+/* initial render */
+renderChartByKey(selectEl.value);
+downloadBtn.disabled = false;
+
+</script>
+</body>
+</html>

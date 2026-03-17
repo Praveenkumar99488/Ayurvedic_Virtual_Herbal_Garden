@@ -1,0 +1,200 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Virtual Herbal Garden</title>
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #d4fc79, #96e6a1);
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
+
+    h1 {
+        margin-top: 20px;
+        color: #2e7d32;
+        font-size: 2.5em;
+    }
+
+    .garden {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+        padding: 20px;
+    }
+
+    .plant-btn {
+        background: #fff;
+        color: #2e7d32;
+        border: 2px solid #2e7d32;
+        padding: 10px 20px;
+        border-radius: 25px;
+        font-size: 1em;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .plant-btn:hover {
+        background: #2e7d32;
+        color: #fff;
+        transform: scale(1.05);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    }
+</style>
+</head>
+<body>
+
+<h1>🌿 Virtual Herbal Garden 🌿</h1>
+<div class="garden" id="garden"></div>
+
+<script src="ayurvedic_plants_formatted_no_quotes.js"></script>
+<script>
+    const gardenDiv = document.getElementById('garden');
+    ayurvedicPlants.forEach(plant => {
+        const btn = document.createElement('button');
+        btn.className = 'plant-btn';
+        btn.textContent = plant.sanskrit || plant.commonName;
+        gardenDiv.appendChild(btn);
+    });
+</script>
+
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Virtual Herbal Garden</title>
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #d4fc79, #96e6a1);
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
+
+    h1 {
+        margin-top: 20px;
+        color: #2e7d32;
+        font-size: 2.5em;
+    }
+
+    .garden {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+        padding: 20px;
+    }
+
+    .plant-btn {
+        background: #fff;
+        color: #2e7d32;
+        border: 2px solid #2e7d32;
+        padding: 10px 20px;
+        border-radius: 25px;
+        font-size: 1em;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .plant-btn:hover {
+        background: #2e7d32;
+        color: #fff;
+        transform: scale(1.05);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    }
+</style>
+</head>
+<body>
+
+<h1>🌿 Virtual Herbal Garden 🌿</h1>
+<div class="garden" id="garden"></div>
+
+<script>
+const plants = [
+    { id: "ashwagandha", sanskrit: "Ashwagandha", commonName: "Indian Ginseng / Winter Cherry",page:"ashwagandha.html" },
+    { id: "shatavari", sanskrit: "Shatavari", commonName: "Wild Asparagus",page:"shatavari.html" },
+    { id: "amalaki-amla", sanskrit: "Amalaki / Amla", commonName: "Indian Gooseberry", page: "amla.html" },
+    { id: "guduchi-giloy", sanskrit: "Guduchi / Giloy", commonName: "Heart-leaved Moonseed",page: "heart_leaved.html" },
+    { id: "brahmi", sanskrit: "Brahmi", commonName: "Water Hyssop", page:"brahmi.html" },
+    { id: "mandukaparni", sanskrit: "Mandukaparni", commonName: "Gotu Kola" },
+    { id: "haritaki", sanskrit: "Haritaki", commonName: "Chebulic Myrobalan" },
+    { id: "bibhitaki", sanskrit: "Bibhitaki", commonName: "Beleric Myrobalan" },
+    { id: "gokshura", sanskrit: "Gokshura", commonName: "Puncture Vine" },
+    { id: "yashtimadhu", sanskrit: "Yashtimadhu", commonName: "Licorice Root" },
+    { id: "kutki", sanskrit: "Kutki", commonName: "Picrorhiza kurroa" },
+    { id: "bhumyamalaki", sanskrit: "Bhumyamalaki", commonName: "Stonebreaker" },
+    { id: "kalmegh", sanskrit: "Kalmegh", commonName: "Green Chiretta" },
+    { id: "hingu", sanskrit: "Hingu", commonName: "Asafoetida" },
+    { id: "ajwain", sanskrit: "Ajwain", commonName: "Carom Seeds" },
+    { id: "jeeraka", sanskrit: "Jeeraka", commonName: "Cumin" },
+    { id: "shunthi", sanskrit: "Shunthi", commonName: "Dry Ginger",page:"ginger.html" },
+    { id: "saunf", sanskrit: "Saunf", commonName: "Fennel", page:"fenel.html" },
+    { id: "dhaniya", sanskrit: "Dhaniya", commonName: "Coriander", page:"coriander.html" },
+    { id: "pippali", sanskrit: "Pippali", commonName: "Long Pepper" },
+    { id: "vasa-vasaka", sanskrit: "Vasa / Vasaka", commonName: "Malabar Nut" },
+    { id: "tulsi", sanskrit: "Tulsi", commonName: "Holy Basil", page: "tulsi.html"},
+    { id: "kantakari", sanskrit: "Kantakari", commonName: "Yellow Berried Nightshade" },
+    { id: "bharangi", sanskrit: "Bharangi", commonName: "Glory Tree" },
+    { id: "pushkarmool", sanskrit: "Pushkarmool", commonName: "Elecampane" },
+    { id: "chitraka", sanskrit: "Chitraka", commonName: "Leadwort" },
+    { id: "lavanga", sanskrit: "Lavanga", commonName: "Clove" },
+    { id: "ela", sanskrit: "Ela", commonName: "Green Cardamom" },
+    { id: "tejpatra", sanskrit: "Tejpatra", commonName: "Indian Bay Leaf" },
+    { id: "nimba", sanskrit: "Nimba", commonName: "Neem", page:"neem.html" },
+    { id: "manjistha", sanskrit: "Manjistha", commonName: "Indian Madder" },
+    { id: "haridra", sanskrit: "Haridra", commonName: "Turmeric" ,page:"Turmeric.html"},
+    { id: "sariva", sanskrit: "Sariva", commonName: "Indian Sarsaparilla" },
+    { id: "khadira", sanskrit: "Khadira", commonName: "Cutch Tree" },
+    { id: "bakuchi", sanskrit: "Bakuchi", commonName: "Babchi" },
+    { id: "daruharidra", sanskrit: "Daruharidra", commonName: "Tree Turmeric" },
+    { id: "punarnava", sanskrit: "Punarnava", commonName: "Spreading Hogweed" },
+    { id: "shilajit", sanskrit: "Shilajit", commonName: "Mineral Pitch" },
+    { id: "guggulu", sanskrit: "Guggulu", commonName: "Indian Bdellium" },
+    { id: "masha", sanskrit: "Masha", commonName: "Black Gram" },
+    { id: "tila", sanskrit: "Tila", commonName: "Sesame" },
+    { id: "devadaru", sanskrit: "Devadaru", commonName: "Himalayan Cedar",page:"himalayan_cedar.html" },
+    { id: "agnimantha", sanskrit: "Agnimantha", commonName: "Headache Tree" },
+    { id: "patola", sanskrit: "Patola", commonName: "Pointed Gourd" },
+    { id: "shalaparni", sanskrit: "Shalaparni", commonName: "Sal Leaved Desmodium" },
+    { id: "prishniparni", sanskrit: "Prishniparni", commonName: "Uraria" },
+    { id: "garlic", sanskrit: "Lashuna", commonName: "Garlic", page:"garlic.html" },
+    { id: "red-ginger", sanskrit: "Rakta Shunthi", commonName: "Red Ginger", page: "red_ginger.html" },
+    { id: "aloevera", sanskrit: "Ghrita Kumari", commonName: "Aloe Vera", page: "aloevera.html"}
+
+
+];
+
+
+
+
+const gardenDiv = document.getElementById('garden');
+plants.forEach(plant => {
+    const btn = document.createElement('button');
+    btn.className = 'plant-btn';
+    btn.textContent = plant.id || plant.commonName;
+    btn.onclick = () => {
+        window.location.href = `plant.html?id=${plant.id}`;
+    };
+    btn.onclick = () => {
+    window.location.href = plant.page;
+};
+    gardenDiv.appendChild(btn);
+});
+</script>
+
+</body>
+</html>
+

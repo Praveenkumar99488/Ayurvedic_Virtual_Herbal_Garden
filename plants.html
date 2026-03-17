@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plants - Ayurvedic Virtual Garden</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Serif:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="lotus-loader">
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+            </div>
+            <h2>Nurturing Ancient Wisdom...</h2>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-leaf"></i>
+                <span>Ayurvedic Garden</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="home.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="garden.html" class="nav-link">Visualizations</a>
+                </li>
+                <li class="nav-item">
+                    <a href="plants.html" class="nav-link active">Plants</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">About</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Plants Gallery Section -->
+    <section id="plants" class="plants-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Medicinal Plants Database</h2>
+                <p class="section-subtitle">Explore our comprehensive collection of Ayurvedic medicinal plants</p>
+            </div>
+
+            <!-- Search and Filter -->
+            <div class="search-filter-container">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="plant-search" placeholder="Search plants by name or benefits...">
+                </div>
+                <div class="filter-controls">
+                    <select id="filter-by-use" class="filter-select">
+                        <option value="">Filter by Use</option>
+                        <option value="digestive">Digestive</option>
+                        <option value="respiratory">Respiratory</option>
+                        <option value="immune">Immune System</option>
+                        <option value="nervous">Nervous System</option>
+                        <option value="skin">Skin Care</option>
+                        <option value="cardiovascular">Cardiovascular</option>
+                    </select>
+                    <select id="filter-by-part" class="filter-select">
+                        <option value="">Filter by Plant Part</option>
+                        <option value="leaf">Leaves</option>
+                        <option value="root">Roots</option>
+                        <option value="stem">Stem</option>
+                        <option value="flower">Flowers</option>
+                        <option value="fruit">Fruits</option>
+                        <option value="seed">Seeds</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Plants Grid -->
+            <div class="plants-grid" id="plants-grid">
+                <!-- Plant cards will be dynamically inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Plant Detail Modal -->
+    <div id="plant-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-body" id="modal-body">
+                <!-- Plant details will be dynamically inserted here -->
+            </div>
+            <div class="button-container">
+                <a href="check.html" class="plant-3d">View 3D</a>
+            </div>
+
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Ayurvedic Garden</h4>
+                    <p>Preserving ancient wisdom for modern wellness through interactive digital experiences.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="home.html">Home</a></li>
+                        <li><a href="garden.html">Visualizations</a></li>
+                        <li><a href="plants.html">Plants</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Plant Database</a></li>
+                        <li><a href="#">Growing Guide</a></li>
+                        <li><a href="#">Health Benefits</a></li>
+                        <li><a href="#">Research</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Disclaimer</h4>
+                    <p class="disclaimer">
+                        This information is for educational purposes only. 
+                        Always consult healthcare professionals before using any medicinal plants.
+                    </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Ayurvedic Virtual Garden. All rights reserved.</p>
+            </div>
+
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="js\ayurvedic_plants_formatted_no_quotes.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html> 

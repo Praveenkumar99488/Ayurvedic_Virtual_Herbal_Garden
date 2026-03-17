@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Colorful Fennel Interaction</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #e2f7e1, #a8ddb5); /* Minty white to soft sea green */
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .wrapper {
+      display: flex;
+      gap: 30px;
+      max-width: 1100px;
+      width: 100%;
+      margin: auto;
+      align-items: flex-start;
+    }
+    .model-container {
+      position: relative;
+      width: 100vw;
+      height: 95vh;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+    .model-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 20px;
+    }
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 20;
+      cursor: pointer;
+    }
+    .hotspot {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle, #66a182 0%, #3c8058 100%); /* Soft herb-green tones */
+      border-radius: 50%;
+      border: 2px solid white;
+      cursor: pointer;
+      animation: pulse 2s infinite;
+      z-index: 10;
+    }
+    .hotspot:hover {
+      transform: scale(1.3);
+    }
+    @keyframes pulse {
+      0%   { box-shadow: 0 0 0   0 rgba(102, 161, 130, 0.7); }
+      70%  { box-shadow: 0 0 0  12px rgba(102, 161, 130, 0); }
+      100% { box-shadow: 0 0 0   0 rgba(102, 161, 130, 0); }
+    }
+    .info-box {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(10px);
+      padding: 30px;
+      border-radius: 20px;
+      color: #2d2d2d;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      display: none;
+    }
+    .info-box.active {
+      display: block;
+    }
+    .info-title {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: #3c8058; /* Rich green accent */
+    }
+    .info-text {
+      font-size: 15px;
+      line-height: 1.7;
+    }
+    .note {
+      font-size: 14px;
+      color: #555;
+      margin-top: 10px;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrapper">
+    <div class="model-container">
+      <div class="overlay" onclick="hideHotspotsAndOverlay()"></div>
+
+      <iframe
+        title="Fennel 3D"
+        src="https://sketchfab.com/models/31f56837560f4343a6ba8e1cab1a4ec7/embed?autostart=1"
+        allow="autoplay; fullscreen; xr-spatial-tracking"
+        xr-spatial-tracking
+        execution-while-out-of-viewport
+        execution-while-not-rendered
+        web-share>
+      </iframe>
+
+      <!-- Hotspots -->
+      <div class="hotspot" style="top: 25%; left: 55%;" onclick="showInfo('leaf')" title="Leaf"></div>
+      <div class="hotspot" style="top: 50%; left: 45%;" onclick="showInfo('stem')" title="Stem"></div>
+      <div class="hotspot" style="top: 75%; left: 50%;" onclick="showInfo('umbel')" title="Flower Umbel"></div>
+    </div>
+
+    <!-- Info Box -->
+    <div class="info-box" id="infoBox">
+      <div class="info-title" id="infoTitle">Click a part</div>
+      <div class="info-text" id="infoText">Click a green marker on the fennel to explore.</div>
+      <div class="note">📌 The first click removes hotspots, letting you freely rotate the model.</div>
+    </div>
+  </div>
+
+  <script>
+    const infoTitle = document.getElementById("infoTitle");
+    const infoText = document.getElementById("infoText");
+    const infoBox = document.getElementById("infoBox");
+
+    const infoContent = {
+      leaf: {
+        title: "🍃 Fennel Leaves",
+        text: "Finely divided, feathery leaves packed with anise-like aroma—commonly used as a garnish and flavoring in cooking."
+      },
+      stem: {
+        title: "🌿 Fennel Stem",
+        text: "Sturdy, hollow stems that support the plant; both crunchy and aromatic, often used raw or cooked."
+      },
+      umbel: {
+        title: "🌼 Flower Umbel",
+        text: "Umbrella-shaped clusters of yellow flowers that develop into aromatic fennel seeds—key in culinary and medicinal uses."
+      }
+    };
+
+    function showInfo(part) {
+      infoTitle.textContent = infoContent[part].title;
+      infoText.textContent = infoContent[part].text;
+      infoBox.classList.add("active");
+    }
+
+    function hideHotspotsAndOverlay() {
+      document.querySelectorAll('.hotspot').forEach(dot => dot.style.display = 'none');
+      document.querySelector('.overlay').style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>

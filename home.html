@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Ayurvedic Virtual Garden</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Serif:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="lotus-loader">
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+            </div>
+            <h2>Nurturing Ancient Wisdom...</h2>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-leaf"></i>
+                <span>Ayurvedic Garden</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="home.html" class="nav-link active">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="garden.html" class="nav-link">Visualizations</a>
+                </li>
+                <li class="nav-item">
+                    <a href="plants.html" class="nav-link">Plants</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">About</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <!-- Background Image -->
+        <div class="hero-background">
+            <img src="assets/WhatsApp Image 2025-07-31 at 19.40.43_fe17d9bf.jpg" alt="Ayurvedic Garden Background" class="hero-bg-image">
+            <div class="hero-overlay"></div>
+        </div>
+        
+        <!-- Text Above Image -->
+        <!-- <div class="hero-text-above">
+            <h2 class="hero-above-title">Welcome to the <br><span class="gradient-text">Ayurvedic Virtual Garden</span></h2>
+            <p class="hero-above-subtitle">A journey through nature's healing pharmacy</p> -->
+        <!-- </div> --> 
+        
+        <!-- Main Hero Content - Two Column Layout -->
+        <div class="hero-content">
+            <div class="hero-grid">
+                <!-- Left Column - Welcome Message -->
+                <div class="hero-left">
+                    <div class="hero-text-left">
+                        <h1 class="hero-title">
+                            Discover the Ancient Wisdom of
+                            <span class="gradient-text">Ayurveda</span>
+                        </h1>
+                        <p class="hero-subtitle">
+                            Discover the healing power of ancient medicinal plants through an immersive digital experience. 
+                            Explore nature's pharmacy and learn about traditional Ayurvedic remedies.
+                        </p>
+                        <div class="hero-buttons">
+                            <button class="btn btn-primary" id="explore-garden-btn">
+                                <i class="fas fa-seedling"></i>
+                                Explore Garden
+                            </button>
+                            <button class="btn btn-secondary" id="learn-more-btn">
+                                <i class="fas fa-book-open"></i>
+                                Learn More
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Column - Herbal Elements and Promotional Banner -->
+                <div class="hero-right">
+                    <div class="hero-right-content">
+                        <!-- Promotional Banner -->
+                        <div class="promotional-banner">
+                            <div class="banner-content">
+                                <h3 class="banner-title">Navigate through the Ayurvedic Virtual Garden</h3>
+                                <h2 class="banner-offer">Start at Explore Garden</h2>
+                                <p class="banner-subtitle">Click on any plant to view its uses and benefits</p>
+                                <p class="banner-description">
+                                    Navigate through the Ayurvedic Virtual Garden by starting at Explore Garden. Click on any plant to view its uses and benefits, or visit the Plants section to see all available herbs. Use the search bar to filter plants by specific diseases or health issues for quick, targeted results.
+                                </p>
+                                <button class="btn btn-primary banner-btn">
+                                    <i class="fas fa-seedling"></i>
+                                    Explore Garden
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Herbal Elements Display -->
+                        <div class="herbal-elements">
+                            <div class="herbal-item mortar-pestle">
+                                <div class="herbal-icon">
+                                    <i class="fas fa-mortar-pestle"></i>
+                                </div>
+                                <div class="herbal-glow"></div>
+                            </div>
+                            
+                            <div class="herbal-item compress-balls">
+                                <div class="herbal-icon">
+                                    <i class="fas fa-circle"></i>
+                                </div>
+                                <div class="herbal-glow"></div>
+                            </div>
+                            
+                            <div class="herbal-item diffuser">
+                                <div class="herbal-icon">
+                                    <i class="fas fa-wine-bottle"></i>
+                                </div>
+                                <div class="herbal-glow"></div>
+                            </div>
+                            
+                            <div class="herbal-item leaves">
+                                <div class="herbal-icon">
+                                    <i class="fas fa-leaf"></i>
+                                </div>
+                                <div class="herbal-glow"></div>
+                            </div>
+                            
+                            <div class="herbal-item herbs">
+                                <div class="herbal-icon">
+                                    <i class="fas fa-seedling"></i>
+                                </div>
+                                <div class="herbal-glow"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Floating elements for visual appeal -->
+                        <div class="floating-elements">
+                            <div class="floating-leaf leaf-1">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <div class="floating-leaf leaf-2">
+                                <i class="fas fa-seedling"></i>
+                            </div>
+                            <div class="floating-leaf leaf-3">
+                                <i class="fas fa-spa"></i>
+                            </div>
+                            <div class="floating-leaf leaf-4">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Ayurvedic Garden</h4>
+                    <p>Preserving ancient wisdom for modern wellness through interactive digital experiences.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="home.html">Home</a></li>
+                        <li><a href="garden.html">Visualizations</a></li>
+                        <li><a href="plants.html">Plants</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Plant Database</a></li>
+                        <li><a href="#">Growing Guide</a></li>
+                        <li><a href="#">Health Benefits</a></li>
+                        <li><a href="#">Research</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Disclaimer</h4>
+                    <p class="disclaimer">
+                        This information is for educational purposes only. 
+                        Always consult healthcare professionals before using any medicinal plants.
+                    </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Ayurvedic Virtual Garden. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html> 
